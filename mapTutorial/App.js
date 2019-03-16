@@ -19,15 +19,40 @@ const instructions = Platform.select({
 
 type Props = {};
 export default class App extends Component<Props> {
+  state = {
+    data: ''
+  }
+
+  componentDidMount = () => {
+    fetch('http://sloder.netsoc.ie/server.php',{
+      method: 'GET'
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+      console.log("test");
+      this.setState({
+        data: responseJson
+      })
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
   render() {
     return (
-      <MapView
-      style={styles.mapStyle}
-    initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
+     /* <View>
+        <Text>
+          {this.state.data.body}
+        </Text>
+      </View>*/
+    <MapView
+    style={styles.mapStyle}
+  initialRegion={{
+    latitude: 8.7832,
+    longitude: 34.5085,
+    latitudeDelta: 110,
+    longitudeDelta: 20,
     }}
   />
     );
