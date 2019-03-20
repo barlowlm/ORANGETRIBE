@@ -12,6 +12,7 @@ const RootStack = createStackNavigator({
   headerMode: 'screen'
 });
 
+
 const App = createAppContainer(RootStack);
 
 export default App;
