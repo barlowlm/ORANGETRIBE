@@ -12,6 +12,9 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import MapView from 'react-native-maps';
 import Login from './components/Login'
 
+//link to local file
+let boundaries = require('./AdminBoundariesLight.json');
+
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -27,7 +30,7 @@ export default class App extends Component<Props> {
 
   componentDidMount = () => {
     fetch('http://sloder.netsoc.ie/server.php',{
-      method: 'GET'
+      method: 'POST'
     })
     .then((response) => response.json())
     .then((responseJson) => {
@@ -43,23 +46,34 @@ export default class App extends Component<Props> {
   }
   render() {
     return (
-     /* <View>
+    <View>
+      //check if json file contains anything in if and only then try to display
         <Text>
           {this.state.data.body}
         </Text>
-      </View>*/
+      </View>
+      
+      /*
     <MapView
     style={styles.mapStyle}
-  initialRegion={{
-    latitude: 8.7832,
-    longitude: 34.5085,
-    latitudeDelta: 110,
-    longitudeDelta: 20,
+    initialRegion={{
+      latitude: 8.7832,
+      longitude: 34.5085,
+      latitudeDelta: 110,
+      longitudeDelta: 20,
     }}
-  />
+  >
+  */
     );
   }
 }
+
+/* <MapView.Marker
+            coordinate = {{
+              latitude: boundaries.features[0].geometry.coordinates[0][1][1],
+              longitude: boundaries.features[0].geometry.coordinates[0][1][0],
+            }}
+      /> */
 
 const styles = StyleSheet.create({
   container: {
