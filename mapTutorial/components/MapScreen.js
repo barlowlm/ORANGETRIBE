@@ -33,25 +33,23 @@ export default class MapScreens extends Component<Props>{
       </View>*/
     <MapView
     style={styles.mapStyle}
-  initialRegion={{
+    initialRegion={{
     latitude: 8.7832,
     longitude: 34.5085,
     latitudeDelta: 110,
     longitudeDelta: 20,
-    }}
-  />
+    }} />
     );
   }
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#F5FCFF',
-    },
-    mapStyle: {
-      flex: 1,
-    },
-  })
-};
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  mapStyle: {
+    flex: 1,
+  },
+})
