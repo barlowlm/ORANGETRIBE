@@ -1,54 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import MapView from 'react-native-maps';
-import Login from './components/Login'
+import LoginScreen from './components/LoginScreen';
+import SplashScreen from './components/SplashScreen';
+import MapScreen from './components/MapScreen';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+const RootStack = createStackNavigator({
+  Splash: SplashScreen,
+  Login: LoginScreen,
+  Home: MapScreen,
+  headerMode: 'screen'
 });
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <MapView
-      style={styles.mapStyle}
-      initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      }}
-      />
-    );
-  }
-}
+const App = createAppContainer(RootStack);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  mapStyle: {
-    flex: 1,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default App;
