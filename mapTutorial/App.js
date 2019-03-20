@@ -43,11 +43,14 @@ export default class App extends Component<Props> {
   }
   render() {
     return (
-     /* <View>
+  /*
+      <View>
         <Text>
           {this.state.data.body}
         </Text>
-      </View>*/
+      </View> 
+*/
+
     <MapView
     style={styles.mapStyle}
   initialRegion={{
@@ -56,7 +59,15 @@ export default class App extends Component<Props> {
     latitudeDelta: 110,
     longitudeDelta: 20,
     }}
-  />
+  >
+    <MapView.Marker
+      coordinate = {{
+        latitude: 8.7832,
+        longitude: 34.5085,
+      }}
+    />
+  </MapView>
+  
     );
   }
 }
