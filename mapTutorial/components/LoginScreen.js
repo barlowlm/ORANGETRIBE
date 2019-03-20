@@ -6,16 +6,16 @@ import {
     KeyboardAvoidingView
 } from 'react-native'
 
-export default class Login extends Component {
+export default class LoginScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
                 <StatusBar barStyle="light-content" />
-                <KeyboardAvoidingView behavior='padding' style={styles.container}>
+                <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset= {-300} style={styles.container} >
                     <TouchableWithoutFeedback style={styles.container} 
                             onPress={Keyboard.dismiss}>
                         <View style={styles.logoContainer}>
-                            <View style={styles.logoContainer}>
+                            <View style={styles.logoContainer}> 
                                 <Image style={styles.logo}
                                     source={require('../images/logo.png')}>
                                 </Image> 
@@ -24,7 +24,7 @@ export default class Login extends Component {
                             <View style={styles.infoContainer}>
                                 <TextInput style={styles.input}
                                     placeholder="Enter username/email"
-                                    placeholderTextColor='rgba(255,255,255,0.8)'
+                                    placeholderTextColor='grey'
                                     keyboardType='email-address'
                                     returnKeyType='next'
                                     autoCorrect={false}
@@ -32,13 +32,14 @@ export default class Login extends Component {
                                 />
                                 <TextInput style={styles.input} 
                                     placeholder="Enter password"
-                                    placeholderTextColor='rgba(255,255,255,0.8)'
+                                    placeholderTextColor='grey'
                                     returnKeyType='go'
                                     secureTextEntry
                                     autoCorrect={false}
                                     ref={"txtPassword"}
                                 />
-                                <TouchableOpacity style={styles.buttonContainer}>
+                                <TouchableOpacity style={styles.buttonContainer} 
+                                        onPress={() => this.props.navigation.navigate('Home')}>
                                     <Text style={styles.buttonText}>SIGN IN</Text>
                                 </TouchableOpacity>
                             </View>
@@ -52,7 +53,7 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgb(32, 53, 70)',
+        backgroundColor: 'white',
         flexDirection: 'column',
     },
     logoContainer: {
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     logo: {
-        width: 128,
+        width: 210,
         height: 56,
     },
     title: {
@@ -76,14 +77,13 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        height: 200,
+        height: 300,
         padding: 20,
-        // backgroundColor: 'red'
     },
     input: {
         height: 40,
-        backgroundColor: 'rgba(255,255,255,0.2)',
-        color: '#FFF',
+        backgroundColor: '#E6E6E6',
+        color: 'grey',
         marginBottom: 20,
         paddingHorizontal: 10
     },

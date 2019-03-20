@@ -1,133 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import MapView, {Callout} from 'react-native-maps';
-import Login from './components/Login'
+import LoginScreen from './components/LoginScreen';
+import SplashScreen from './components/SplashScreen';
+import MapScreen from './components/MapScreen';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+const RootStack = createStackNavigator({
+  Splash: SplashScreen,
+  Login: LoginScreen,
+  Home: MapScreen,
+  headerMode: 'screen'
 });
 
-type Props = {};
-export default class App extends Component<Props> {
-  state = {
-    data: ''
-  }
 
-  componentDidMount = () => {
-    fetch('http://sloder.netsoc.ie/server.php',{
-      method: 'POST'
-    })
-    .then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson);
-      console.log("test");
-      this.setState({
-        data: JSON.parse(responseJson)
-      })
-      console.log(this.state.data);
-      console.log(this.state.data.features[0].geometry.coordinates[0]);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-  }
+const App = createAppContainer(RootStack);
 
-  render() {
-    
-    if (this.state.data=='') {
-      return (
-        <View style={styles.container}>
-          <Text>Loading...</Text>
-        </View> 
-      );
-    } else {
-      return (
-        <MapView
-          style={styles.mapStyle}
-        initialRegion={{
-          latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
-          longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
-          latitudeDelta: 2, //110,
-          longitudeDelta: 2, //20,
-          }}
-        >
-
-          <MapView.Marker
-            coordinate = {{
-              latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
-              longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
-            }}
-          > 
-          </MapView.Marker>
-
-
-
-        </MapView>
-      );
-    }
-  }
-}
-
-/*
-          <MapView.Polygon
-            
-            coordinate = {this.state.data.features[0].geometry.coordinates[0]}
-            strokeColor="#F00"
-            fillColor="rgba(255,0,0,0.5)"
-            strokeWidth={1}
-          /> */
-
-/*
-<MapView
-          style={styles.mapStyle}
-        initialRegion={{
-          latitude: 8.7832,
-          longitude: 34.5085,
-          latitudeDelta: 110,
-          longitudeDelta: 20,
-          }}this.state.data.features[0].geometry.coordinates[0]
-        >
-
-        <MapView.Marker
-            coordinate = {{
-              latitude: [0][1],
-              longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
-            }}
-          /> 
-        
-          
-        </MapView> 
-
-  ***************************
-
-
-*/
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  mapStyle: {
-    flex: 1,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+export default App;
