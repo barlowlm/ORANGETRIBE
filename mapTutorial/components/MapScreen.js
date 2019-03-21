@@ -1,11 +1,24 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import MapView from 'react-native-maps';
+import MapView, {Polygon} from 'react-native-maps';
 
 type Props = {};
 export default class MapScreens extends Component<Props>{
   state = {
     data: ''
+  }
+
+  polygonCoordinates = () => {
+    let i;
+    let arr = [];
+    for (i=0; i<this.state.data.features[0].geometry.coordinates[0].length; i++) {
+      let LatLng = {
+        latitude: this.state.data.features[0].geometry.coordinates[0][i][1],
+        longitude: this.state.data.features[0].geometry.coordinates[0][i][0],
+      }
+    arr[i] = LatLng;
+    }
+    return arr;
   }
 
   componentDidMount = () => {
@@ -20,7 +33,7 @@ export default class MapScreens extends Component<Props>{
         data: JSON.parse(responseJson)
       })
       console.log(this.state.data);
-      console.log(this.state.data.features[0].geometry.coordinates[0]);
+      console.log(this.polygonCoordinates());
     })
     .catch((error) => {
       console.error(error);
@@ -42,20 +55,22 @@ export default class MapScreens extends Component<Props>{
         initialRegion={{
           latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
           longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
-          latitudeDelta: 2, //110,
-          longitudeDelta: 2, //20,
+          latitudeDelta: 1, //110,
+          longitudeDelta: 1,//20,
           }}
         >
 
-          <MapView.Marker
-            coordinate = {{
-              latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
-              longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
-            }}
-          > 
-          </MapView.Marker>
-
-
+<Polygon
+          coordinates={[
+            {latitude: -0.106029551095291, longitude: 37.23769925816912},
+            {latitude: -0.152315168375523, longitude: 37.30826938167124},
+            {latitude: -0.42652654430798, longitude: 37.20400819630606},
+            {latitude: -0.407037564698918, longitude: 37.11433039434282},
+            {latitude: -0.106029551095291, longitude: 37.23769925816912},
+          ]}
+          fillColor = '#9ACD32'
+        />
+        
 
         </MapView>
       );
@@ -64,13 +79,20 @@ export default class MapScreens extends Component<Props>{
 }
 
 /*
-          <MapView.Polygon
-            
-            coordinate = {this.state.data.features[0].geometry.coordinates[0]}
-            strokeColor="#F00"
-            fillColor="rgba(255,0,0,0.5)"
-            strokeWidth={1}
-          /> */
+
+
+
+
+          <MapView.Marker
+            coordinate = {{
+              latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
+              longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
+            }}
+            title = {this.state.data.features[0].properties.Sublocatio}
+            description = {"Province "+ this.state.data.features[0].properties.Province +  ", District " + this.state.data.features[0].properties.District + ", County " +  this.state.data.features[0].properties.County}
+          /> 
+          
+ */
 
 /*
 <MapView
