@@ -42,9 +42,11 @@ export default class MapScreens extends Component<Props>{
         initialRegion={{
           latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
           longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
-          latitudeDelta: 2, //110,
-          longitudeDelta: 2, //20,
+          latitudeDelta: 2,//110,
+          longitudeDelta: 2,//20,
           }}
+          customMapStyle = {mapStyle}
+          
         >
 
           <MapView.Marker
@@ -56,7 +58,7 @@ export default class MapScreens extends Component<Props>{
           </MapView.Marker>
 
 
-
+          
         </MapView>
       );
     }
@@ -114,3 +116,63 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+var mapStyle = [
+  {
+    "elementType": "labels",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.neighborhood",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "featureType": "transit",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  }
+]
