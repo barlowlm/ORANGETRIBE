@@ -10,7 +10,7 @@ export default class LoginScreen extends Component {
     render() {
         return (
             <SafeAreaView style={styles.container}>
-                <StatusBar barStyle="light-content" />
+                <StatusBar backgroundColor = 'lightgrey' />
                 <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset= {-300} style={styles.container} >
                     <TouchableWithoutFeedback style={styles.container} 
                             onPress={Keyboard.dismiss}>
@@ -37,8 +37,9 @@ export default class LoginScreen extends Component {
                                     secureTextEntry
                                     autoCorrect={false}
                                     ref={"txtPassword"}
-                                />
-                                <TouchableOpacity style={styles.buttonContainer} 
+                                /> 
+                                <TouchableOpacity style={styles.buttonContainer}
+                                        navigation = {this.props.navigation}
                                         onPress={() => this.props.navigation.navigate('Home')}>
                                     <Text style={styles.buttonText}>SIGN IN</Text>
                                 </TouchableOpacity>
