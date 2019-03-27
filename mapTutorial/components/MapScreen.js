@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input} from 'native-base';
 
@@ -53,21 +53,21 @@ export default class MapScreen extends Component<Props>{
     return (
       <Container>
         <Header style ={{backgroundColor: '#ff9900'}} 
-            androidStatusBarColor = "#cc7a00"
+            androidStatusBarColor = '#cc7a00'
             searchBar rounded>
-            <Left>
+              <Left>
+                <Button transparent>
+                  <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
+                </Button>
+              </Left>
+              <Item style ={{backgroundColor : 'white'}}>
+                <Icon name="ios-search" />
+                <Input placeholder="Search country..." />
+                <Icon name="ios-people" />
+              </Item>
               <Button transparent>
-                <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
+                <Text>Search</Text>
               </Button>
-            </Left>
-            <Item style ={{backgroundColor : 'white'}}>
-              <Icon name="ios-search" />
-              <Input placeholder="Search country..." />
-              <Icon name="ios-people" />
-            </Item>
-            <Button transparent>
-              <Text>Search</Text>
-            </Button>
         </Header>
          
         <MapView

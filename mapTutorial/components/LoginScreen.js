@@ -19,7 +19,7 @@ export default class LoginScreen extends Component {
                                 <Image style={styles.logo}
                                     source={require('../images/logo.png')}>
                                 </Image> 
-                                <Text style={styles.title}>Account Information</Text>
+                                <Text style={styles.title}>Data Visualized</Text>
                             </View>
                             <View style={styles.infoContainer}>
                                 <TextInput style={styles.input}

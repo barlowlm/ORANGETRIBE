@@ -8,7 +8,8 @@ export default class SplashScreen extends Component/*<Props>*/ {
     return (
         <TouchableWithoutFeedback style={styles.container} 
             onPress={() => this.props.navigation.navigate('Login')}>
-          <View style={styles.container} androidStatusBarColor = "#cc7a00">
+          <View style={styles.container} >
+            <StatusBar backgroundColor = '#cc7a00'/>
             <Text style={styles.title}>TRIBE </Text>
           </View>
         </TouchableWithoutFeedback>
