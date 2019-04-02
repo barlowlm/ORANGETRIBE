@@ -71,7 +71,12 @@ export default class MapScreen extends Component<Props>{
         </Header>
          
         <MapView
-          style={styles.mapStyle}
+         style={styles.mapStyle}
+        // mapType = "terrain"
+        mapType = "satellite"
+         //mapType = "hybrid"
+        // mapType = "standard"
+
           initialRegion={{
           // latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
           // longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
@@ -79,7 +84,7 @@ export default class MapScreen extends Component<Props>{
           latitudeDelta: 1, //110,
           longitudeDelta: 1,//20,
           }}
-          customMapStyle = {mapStyle}>
+         customMapStyle = {mapStyle}>
 
           <Polygon coordinates={[
               {latitude: -0.106029551095291, longitude: 37.23769925816912},
