@@ -9,7 +9,7 @@ export default class SplashScreen extends Component/*<Props>*/ {
         <TouchableWithoutFeedback style={styles.container} 
             onPress={() => this.props.navigation.navigate('Login')}>
           <View style={styles.container} >
-            <StatusBar backgroundColor = '#cc7a00'/>
+            <StatusBar backgroundColor = '#b35900'/>
             <Text style={styles.title}>TRIBE </Text>
           </View>
         </TouchableWithoutFeedback>
@@ -19,7 +19,7 @@ export default class SplashScreen extends Component/*<Props>*/ {
 
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: '#ff9900',
+      backgroundColor: '#e67300',
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',

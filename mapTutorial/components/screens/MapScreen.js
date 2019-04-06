@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
+import {Platform, StyleSheet, Image, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input} from 'native-base';
 
-type Props = {};
-export default class MapScreen extends Component<Props>{
+export default class MapScreen extends Component{
   state = {
     data: ''
   }
@@ -52,22 +51,22 @@ export default class MapScreen extends Component<Props>{
     // } else {
     return (
       <Container>
-        <Header style ={{backgroundColor: '#ff9900'}} 
-            androidStatusBarColor = '#cc7a00'
-            searchBar rounded>
-              <Left>
-                <Button transparent>
-                  <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
-                </Button>
-              </Left>
-              <Item style ={{backgroundColor : 'white'}}>
-                <Icon name="ios-search" />
-                <Input placeholder="Search country..." />
-                <Icon name="ios-people" />
-              </Item>
-              <Button transparent>
-                <Text>Search</Text>
+
+        <Header style ={{backgroundColor: '#cc6600'}} 
+          androidStatusBarColor = '#994d00'>
+            <Left>
+              <Button transparent onPress={() => this.props.navigation.openDrawer()}>
+                <Icon name='menu'/>
               </Button>
+            </Left>
+            <Body>
+              <Title>GeoFind</Title>
+            </Body>
+            <Right>
+              <Button transparent onPress={() => this.props.navigation.navigate('Query')}>
+                <Icon name='ios-pin'/>
+              </Button>
+            </Right>
         </Header>
          
         <MapView
@@ -91,6 +90,7 @@ export default class MapScreen extends Component<Props>{
             fillColor = '#9ACD32'
           /> 
         </MapView>
+
       </Container>
       
     );
