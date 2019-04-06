@@ -71,6 +71,11 @@ export default class MapScreen extends Component{
          
         <MapView
           style={styles.mapStyle}
+          // mapType = "terrain"
+          mapType = "satellite"
+          //mapType = "hybrid"
+          // mapType = "standard"
+
           initialRegion={{
           // latitude: this.state.data.features[0].geometry.coordinates[0][0][1],
           // longitude: this.state.data.features[0].geometry.coordinates[0][0][0],
