@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard, TouchableOpacity} from 'react-native';
-import MapView, {Polygon, Circle} from 'react-native-maps';
-import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input, Card, CardItem} from 'native-base';
+import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import MapView, {Circle} from 'react-native-maps';
 
 let dataKenya = require('./pop_baringo.json');
 
@@ -14,6 +13,10 @@ const colorGreen = 'Green';
 
 
 export default class Population extends Component {
+
+  Population (data) {
+    dataKenya = data;
+  }
 
   state = {
     radius: 2000,
@@ -71,56 +74,6 @@ export default class Population extends Component {
       ))
     );
   }
-
-  render() {
-      console.log("render data = " + dataKenya.features[1].geometry.coordinates[0][0][0]);
-        return (
-          <Container>
-            <Header style ={{backgroundColor: '#ff9900'}} 
-                androidStatusBarColor = '#cc7a00'
-                searchBar rounded>
-                  <Left>
-                    <Button transparent>
-                      <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
-                    </Button>
-                  </Left>
-                  <Item style ={{backgroundColor : 'white'}}>
-                    <Icon name="ios-search" />
-                      <Input placeholder="Search country..." />
-                    <Icon name="ios-people" />
-                  </Item>
-                  <Button transparent>
-                    <Text>Search</Text>
-                  </Button>
-            </Header>
-            
-            <MapView
-              style={styles.mapStyle}
-              initialRegion={{
-                latitude: dataKenya.features[0].geometry.coordinates[0][0][0][1], 
-                longitude: dataKenya.features[0].geometry.coordinates[0][0][0][0],
-                latitudeDelta: 3,//110,
-                longitudeDelta: 3,//20,
-              }}
-              customMapStyle = {mapStyle}
-            >
-
-            {this.initCircles(dataKenya.features.length).map((circle, index) => (
-              <View key={index}>
-                  <Circle
-                    center={circle}
-                    radius={this.state.radius}
-                    fillColor = {this.circleColour(index)}
-                    strokeColor = {this.circleColour(index)}
-                  />
-              </View>
-            ))}
-
-            </MapView>
-            {this.renderLegend()}
-          </Container>
-      );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -138,64 +91,3 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
   },
 });
-
-var mapStyle = [
-  {
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.neighborhood",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "transit",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  }
-]

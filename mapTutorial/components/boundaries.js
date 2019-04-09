@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
-import MapView, {Polygon, Callout} from 'react-native-maps';
-import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input, Card, CardItem} from 'native-base';
+import {Platform, StyleSheet, Text, View} from 'react-native';
+import MapView, {Polygon} from 'react-native-maps';
+import {Container, Header, Left,Button, Icon, Item} from 'native-base';
 
 let dataKenya = require('./admin_baringo.json');
 
@@ -23,8 +23,6 @@ export default class Boundaries extends Component{
     }
 
   state = {
-    data: '',
-    visible: false,
     index: 0,
     polygonColor: pink,
   }
@@ -32,7 +30,6 @@ export default class Boundaries extends Component{
   polygonCoordinates = (feature) => {
       let i;
       let arr = [];
-      //console.log(dataKenya.features[feature].geometry.coordinates[0][0].length);
       for (i=0; i<dataKenya.features[feature].geometry.coordinates[0][0].length; i++) {
         let LatLng = {
           latitude: dataKenya.features[feature].geometry.coordinates[0][0][i][1],
@@ -49,10 +46,6 @@ export default class Boundaries extends Component{
       arr[i]=this.polygonCoordinates(i);
     }
     return arr;
-  }
-
-  onPress = () => {
-    this.state.polygonColor=green;
   }
 
   renderCallout = () => {
@@ -101,22 +94,6 @@ export default class Boundaries extends Component{
     }
   }
 
-  renderPolygons = () => {
-    return (
-      this.initPolygons(dataKenya.features.length).map((polygon, index) => (
-        <View key={index}>
-            <Polygon
-              coordinates={polygon}
-              fillColor = {this.state.polygonColor}
-              strokeColor = '#FFFFFF'
-              //tappable = {true}
-              //onPress={() => this.onPress()}
-            />
-        </View>
-      ))
-    );
-  }
-
   renderData = () => {
     return (
       this.initPolygons(dataKenya.features.length).map((polygon, index) => (
@@ -132,52 +109,6 @@ export default class Boundaries extends Component{
       ))
     );
   }
-
-  render() {
-        return (
-          <Container>
-            <Header style ={{backgroundColor: '#ff9900'}} 
-                androidStatusBarColor = '#cc7a00'
-                searchBar rounded>
-                  <Left>
-                    <Button transparent>
-                      <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
-                    </Button>
-                  </Left>
-                  <Item style ={{backgroundColor : 'white'}}>
-                    <Icon name="ios-search" onPress={() => this.changeColour()} />
-                  </Item>
-            </Header>
-            
-            <MapView
-              style={styles.mapStyle}
-              initialRegion={{
-                latitude: dataKenya.features[2].geometry.coordinates[0][0][0][1], 
-                longitude: dataKenya.features[2].geometry.coordinates[0][0][0][0],
-                latitudeDelta: 1,//110,
-                longitudeDelta: 1,//20,
-              }}
-              customMapStyle = {mapStyle}
-            >
-
-              {this.initPolygons(dataKenya.features.length).map((polygon, index) => (
-                <View key={index}>
-                    <Polygon
-                      coordinates={polygon}
-                      fillColor = {this.state.polygonColor}
-                      strokeColor = '#FFFFFF'
-                      //tappable = {true}
-                      //onPress={() => this.onPress()}
-                    />
-                </View>
-              ))}
-            
-            </MapView>
-            {this.renderCallout()}
-          </Container>
-      );
-  }
-
 
 }
 
@@ -196,64 +127,3 @@ const styles = StyleSheet.create({
     //alignItems: 'stretch',
   }
 });
-
-var mapStyle = [
-  {
-    "elementType": "labels",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative",
-    "elementType": "geometry",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.land_parcel",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "administrative.neighborhood",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "poi",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "road",
-    "elementType": "labels.icon",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  },
-  {
-    "featureType": "transit",
-    "stylers": [
-      {
-        "visibility": "off"
-      }
-    ]
-  }
-]
