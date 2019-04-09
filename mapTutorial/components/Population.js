@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard, TouchableOpacity} from 'react-native';
 import MapView, {Polygon, Circle} from 'react-native-maps';
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input, Card, CardItem} from 'native-base';
 
@@ -9,10 +9,8 @@ const pink = '#ffb3ff';
 const blue = '#0073e6';
 const yellow = '#ffff66';
 const green = '#009933';
-const colorBlue = 'blue';
-const colorYellow = 'yellow';
-const colorPink = 'pink';
-const colorGreen = 'green';
+const colorBlue = 'Blue';
+const colorGreen = 'Green';
 
 
 export default class Population extends Component {
@@ -43,9 +41,11 @@ export default class Population extends Component {
 
   renderLegend = () => {
       return (
-        <Button style={styles.button}>
-              <Text style={justifyItems='center'}>`Rural areas: {this.state.ruralName}, Urban areas: {this.state.urbanName}</Text>
-        </Button>
+        <TouchableOpacity style={styles.button}>
+              <Text>Legend: </Text>
+              <Text>Rural areas: {this.state.ruralName}</Text>
+              <Text>Urban areas: {this.state.urbanName}</Text>
+        </TouchableOpacity>
       );
   }
 
@@ -120,15 +120,8 @@ export default class Population extends Component {
             {this.renderLegend()}
           </Container>
       );
-    //}
   }
 }
-
-/*
-
-
-
-*/
 
 const styles = StyleSheet.create({
   container: {
@@ -142,8 +135,8 @@ const styles = StyleSheet.create({
   },
   button: {
     justifyContent: 'flex-end',
-    //alignItems: 'stretch',
-  }
+    alignItems: 'stretch',
+  },
 });
 
 var mapStyle = [

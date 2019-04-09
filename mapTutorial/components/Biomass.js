@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard, TouchableOpacity} from 'react-native';
 import MapView, {Polygon, Circle} from 'react-native-maps';
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input, Card, CardItem} from 'native-base';
 
@@ -47,6 +47,17 @@ export default class Biomass extends Component{
     }
     return arr;
   }
+
+  renderLegend = () => {
+    return (
+      <TouchableOpacity style={styles.button}>
+            <Text>Legend: </Text>
+            <Text>Red are areas with high biomass production</Text>
+            <Text>Pink are areas with low biomass produciton</Text>
+            <Text>red-orange-yellow-green-blue-pink</Text>
+      </TouchableOpacity>
+    );
+}
 
   renderCallout = () => {
     if (this.state.visible==true) {

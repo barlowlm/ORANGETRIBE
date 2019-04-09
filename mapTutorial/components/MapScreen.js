@@ -91,10 +91,10 @@ export default class MapScreen extends Component{
           longitudeDelta: 10,//20,
           }}
           customMapStyle = {mapStyle}>
-          {this.state.population.renderData()}
+          {this.state.biomass.renderData()}
  
         </MapView>
-        {this.state.population.renderLegend()}      
+        {this.state.biomass.renderLegend()}      
       </Container>
       
     );
