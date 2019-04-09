@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MapScreen from './components/screens/MapScreen';
+import MapScreen from './components/MapScreen';
 import LoginScreen from './components/screens/LoginScreen';
 import SplashScreen from './components/screens/SplashScreen';
 import QueryScreen from './components/screens/QueryScreen';
