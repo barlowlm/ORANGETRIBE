@@ -9,7 +9,6 @@ import { createStackNavigator, createDrawerNavigator,
   createAppContainer , DrawerItems} from 'react-navigation';
 import {StyleSheet, Text, View, SafeAreaView, ScrollView, Dimensions, Image} from 'react-native';
 
-
 const CustomDrawerComponent = (props) => (
   <SafeAreaView style={{flex: 1}}>
     <View style={{height: 150, backgroundColor: 'white', 
@@ -36,7 +35,8 @@ const AppStack = createStackNavigator({
   Splash:  SplashScreen,
   Login: LoginScreen,
   Home: Drawer, 
-  Query: QueryScreen
+  Query: QueryScreen,
+  MapScreen: MapScreen,
 }, {headerMode : 'none'}
 );
 

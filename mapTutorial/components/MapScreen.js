@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StyleSheet, Text} from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
-import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input} from 'native-base';
+import {Container, Header, Left, Body, Right, Button, Icon, Title} from 'native-base';
 
 import FinancialTouchpoints from './FinancialTouchpoints';
 import Biomass from './Biomass';
 import Boundaries from './boundaries';
 import Population from './Population';
 import Roads from './RoadsMap';
+
 
 export default class MapScreen extends Component{
   state = {
@@ -18,74 +19,119 @@ export default class MapScreen extends Component{
     boundaries: new Boundaries(),
     roads: new Roads(),
     population: new Population(),
+    blank: [false, false, false, false, false]
   }
 
-  renderTouchpoints = () => {
-      //pass some boolean from query class
-      //can we have class instances to allow for this?
+  static navigationOptions = {
+    title: 'MapScreen',
+  };
+
+  renderBiomass = (boxes) => {
+    if (boxes[0]== true) {
+      return (
+        this.state.biomass.renderData()
+      );
+    }
   }
 
-  renderBoundaries = () => {
-
+  renderPopulation = (boxes) => {
+    if (boxes[1]== true) {
+      return (
+        this.state.population.renderData()
+      );
+    }
   }
 
-  renderBiomass = () => {
-
+  renderBoundaries = (boxes) => {
+    if (boxes[2]== true) {
+      return (
+        this.state.boundaries.renderData()
+      );
+    }
   }
 
-  renderRoads = () => {
-
+  renderTouchpoints = (boxes) => {
+      if (boxes[3]== true) {
+        return (
+          this.state.financialTouchpoints.renderData()
+        );
+      }
   }
 
-  renderPopulation = () => {
-
+  renderRoads = (boxes) => {
+    if (boxes[4]==true) {
+      return (
+        this.state.roads.renderData()
+      );
+    }
   }
 
-  renderLegends = () => {
+  renderLegends = (boxes) => {
     //population and biomass have legends
+    if (boxes[0]==true && boxes[1]==true) {
+      return (
+          this.state.biomass.renderLegend(),
+          this.state.population.renderLegend()
+      );
+    } else if (boxes[1]==true) {
+      return (
+        this.state.population.renderLegend()
+      );
+    } else if (boxes[0]==true) {
+      return (
+        this.state.biomass.renderLegend()
+      );
+    }
   }
 
   render() {
-    return (
-      <Container>
-
-        <Header style ={{backgroundColor: '#cc6600'}} 
-          androidStatusBarColor = '#994d00'>
-            <Left>
-              <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-                <Icon name='menu'/>
-              </Button>
-            </Left>
-            <Body>
-              <Title>GeoFind</Title>
-            </Body>
-            <Right>
-              <Button transparent onPress={() => this.props.navigation.navigate('Query')}>
-                <Icon name='ios-pin'/>
-              </Button>
-            </Right>
-        </Header>
-         
-        <MapView
-          style={styles.mapStyle}
-          // mapType = "terrain"
-          mapType = "satellite"
-          //mapType = "hybrid"
-          // mapType = "standard"
-
-          initialRegion={{
-          latitude: -0.106029551095291, longitude: 37.23769925816912,
-          latitudeDelta: 5, //110,
-          longitudeDelta: 5,//20,
-          }}
-          customMapStyle = {mapStyle}>
-          {this.state.biomass.renderData()}
- 
-        </MapView>
-        {this.state.biomass.renderLegend()}      
-      </Container>
-    );
-  }
+    const {navigate} = this.props.navigation;
+    let boxes = this.props.navigation.getParam('boolean', this.state.blank);
+      return (
+        <Container>
+  
+          <Header style ={{backgroundColor: '#cc6600'}} 
+            androidStatusBarColor = '#994d00'>
+              <Left>
+                <Button transparent onPress={() => this.props.navigation.openDrawer()}>
+                  <Icon name='menu'/>
+                </Button>
+              </Left>
+              <Body>
+                <Title>GeoFind</Title>
+              </Body>
+              <Right>
+                <Button transparent onPress={() => this.props.navigation.navigate('Query')}>
+                  <Icon name='ios-pin'/>
+                </Button>
+              </Right>
+          </Header>
+           
+          <MapView
+            style={styles.mapStyle}
+            // mapType = "terrain"
+            mapType = "satellite"
+            //mapType = "hybrid"
+            // mapType = "standard"
+  
+            initialRegion={{
+            latitude: -0.106029551095291, longitude: 37.23769925816912,
+            latitudeDelta: 5, //110,
+            longitudeDelta: 5,//20,
+            }}
+            customMapStyle = {mapStyle}>
+            {this.renderTouchpoints(boxes)}
+            {this.renderBiomass(boxes)}
+            {this.renderPopulation(boxes)}
+            {this.renderRoads(boxes)}
+            {this.renderBoundaries(boxes)}
+            
+          </MapView>
+          {this.renderLegends(boxes)}   
+        </Container>
+      );
+    }
+      
 }
 
 const styles = StyleSheet.create({
