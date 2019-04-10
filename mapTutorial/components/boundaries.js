@@ -3,6 +3,8 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
 import {Container, Header, Left,Button, Icon, Item} from 'native-base';
 
+//Ruth class to render data for administrative boundaries Data
+
 let dataKenya = require('./admin_baringo.json');
 
 const red = '#f44242';
@@ -18,6 +20,7 @@ const white = '#FFFFFF'
 
 export default class Boundaries extends Component{
 
+  //Constructor for initalsing new data - for when you hook up the database
     Boundaries (data) {
         this.dataKenya = data;
     }

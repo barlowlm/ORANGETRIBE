@@ -5,6 +5,12 @@ import {Container, Header, Left, Body, Right, Button, Icon,
         
 let boxes = [false,false,false,false,false,false,false,false,false];
 
+/*
+  Michael and Ruth
+  Renders checkboxes that when selected or deselected set arrray boxes
+  this data is sent to map screen via react navigation
+  Usual screen layout renderings here also
+*/
 export default class QueryScreen extends Component{
    
     state={
@@ -26,7 +32,7 @@ export default class QueryScreen extends Component{
       title: 'Query',
     };
 
-    //data types
+    //data types setting boxes
     oneCheck(){
         this.setState({one:!this.state.one})
         boxes[0]=!this.state.one;
@@ -123,7 +129,7 @@ export default class QueryScreen extends Component{
               <ListItem onPress={() => this.sixCheck()}>
                 <CheckBox checked={this.state.six} />
                 <Body>
-                <Text>Undefined..</Text>
+                <Text>Baringo</Text>
                 </Body>
               </ListItem>
               <ListItem onPress={() => this.sevenCheck()}>
@@ -147,7 +153,7 @@ export default class QueryScreen extends Component{
               <ListItem itemHeader first>
                 <Text> </Text>
               </ListItem>
-              <Button iconRight block warning rounded >
+              <Button iconRight block warning rounded onPress={() => this.props.navigation.navigate('MapScreen', {boolean: boxes})}>
                   <Icon name = 'ios-search'/>
                   <Text>SEARCH</Text>
               </Button>

@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MapView, {Polygon, Marker} from 'react-native-maps';
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input} from 'native-base';
 
+//Ruth class to render data for Fincancial Touchpoints Data
 const dataKenya = require('./admin_baringo.json');
 
 const pink = '#ffb3ff';

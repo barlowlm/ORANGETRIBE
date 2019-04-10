@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MapView, {Polygon, Circle} from 'react-native-maps';
 
+//Ruth class to render data for BiomassData
+
 let dataKenya = require('./biomass_baringo.json');
 
 const pink = '#ffb3ff';

@@ -3,6 +3,12 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Image, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Content, Item, Input, Picker, Form} from 'native-base';
 
+
+/*
+  Dearbhla and Michael 
+  Dearbhla designed the picker and the navigation 
+  Michael handeled screen design
+*/
 export default class SettingsScreen extends Component{
     constructor(props) {
         super(props);
@@ -62,9 +68,21 @@ export default class SettingsScreen extends Component{
               <Picker.Item label="Standard" value="standard" />
             </Picker>
           </Form>
+          <Image style={styles.logo}
+                  source={require('../images/settings_icon_grey.png')}>
+          </Image>
                 </Content>
         </Container>
         )
     }
 }
-        
+    
+const styles = StyleSheet.create({
+  logo: {
+    opacity: .1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 400,
+    height: 400,
+},
+})

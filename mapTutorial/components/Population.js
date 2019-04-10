@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MapView, {Circle} from 'react-native-maps';
 
+//Ruth class to render data for Population Distribution Data
+
 let dataKenya = require('./pop_baringo.json');
 
 const pink = '#ffb3ff';

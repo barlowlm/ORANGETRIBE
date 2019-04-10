@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, Button,
    TouchableWithoutFeedback, StatusBar} from 'react-native';
 
-//type Props = {};
+//Michael
+//:)
 export default class SplashScreen extends Component/*<Props>*/ {
   render() {
     return (

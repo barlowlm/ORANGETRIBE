@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, View} from 'react-native';
 import MapView, {Polyline} from 'react-native-maps';
 
+//Ruth class to render data for infrastructure Data
+
 let dataKenya = require('./roads_major.json');
 
 const yellow = '#ffff66';
