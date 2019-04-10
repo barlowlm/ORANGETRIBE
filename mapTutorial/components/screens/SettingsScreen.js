@@ -7,19 +7,30 @@ export default class SettingsScreen extends Component{
     constructor(props) {
         super(props);
         this.state = {
-          selected: "satellite"
+          map1: "satellite"
         };
       }
+      static navigationoptions = {
+        title: 'Settings'
+    };
+
+      /*
      onValueChange(value: string) {
         this.setState({
           selected: value
         });
       }
+      */
+     mapChange = (value) => {
+       this.setState({
+         map1:value
+       });
+     }
       
     render (){
-       
+       const {navigate} = this.props.navigation;
         return(
-            <Container>
+            <Container navigation={this.props.navigation}>
                 <Header style ={{backgroundColor: '#cc6600'}} 
                 androidStatusBarColor = '#994d00'>
                     <Left>
@@ -36,17 +47,19 @@ export default class SettingsScreen extends Component{
                     <Text>Choose your map type</Text>
                     <Form>
             <Picker
+              navigation={this.props.navigation}
               note
               mode="dropdown"
               style={{ width: 120 }}
               selectedValue={this.state.selected}
-            onValueChange={this.onValueChange.bind(this)}
-            
+              onValueChange={() => 
+                navigate('MapScreen', {
+                  userMap: Picker.itemValue,
+                })
+              }
             >
               <Picker.Item label="Satellite" value="satellite" />
               <Picker.Item label="Standard" value="standard" />
-              <Picker.Item label="Terrain" value="terrain" />
-              <Picker.Item label="Hyprid" value="hybrid" />
             </Picker>
           </Form>
                 </Content>

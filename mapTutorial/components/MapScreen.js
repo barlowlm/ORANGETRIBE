@@ -19,7 +19,8 @@ export default class MapScreen extends Component{
     boundaries: new Boundaries(),
     roads: new Roads(),
     population: new Population(),
-    blank: [false, false, false, false, false]
+    blank: [false, false, false, false, false],
+    map: "satellite"
   }
 
   static navigationOptions = {
@@ -86,6 +87,7 @@ export default class MapScreen extends Component{
 
   render() {
     const {navigate} = this.props.navigation;
+    userMap = this.props.navigation.getParam('userMap', this.state.map);
     let boxes = this.props.navigation.getParam('boolean', this.state.blank);
       return (
         <Container>
@@ -110,7 +112,7 @@ export default class MapScreen extends Component{
           <MapView
             style={styles.mapStyle}
             // mapType = "terrain"
-            mapType = "satellite"
+            mapType = {userMap}
             //mapType = "hybrid"
             // mapType = "standard"
   
