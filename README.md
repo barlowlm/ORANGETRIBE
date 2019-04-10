@@ -29,7 +29,7 @@ React- native maps:
 Library used to display map and map features.
 If running on an IOS emmulator:Run npm install react-native-maps --save, Run react-native link react-native-maps
 If running on android emmulator:https://github.com/react-native-community/react-native-maps/blob/master/docs/installation.md
-Follow the above link guidelines on installation.For android a google maps API key will be needed, the current API key in the project is from a free trial of Google's API key service. A link to Google's API service can be found in the above installation page.
+Follow the above link guidelines on installation.For android a google maps API key will be needed, the current API key in the project is from a free trial of Google's API key service. A link to Google's API service can be found in the above installation page. This api key is not needed for ios.
 React-native navigation & React-native gesture handler
 For running on an IOS emmulator: run npm install --save-react-navigation, run npm install --save-react-native-gesture-handler, run react-native link react-native-gesture-handler
 For running on an android emmulator: For android follow the above steps of ios, and then manually add dependencies detailes in this document https://reactnavigation.org/docs/en/getting-started.html
