@@ -93,8 +93,8 @@ export default class MapScreen extends Component{
           <Header style ={{backgroundColor: '#cc6600'}} 
             androidStatusBarColor = '#994d00'>
               <Left>
-                <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-                  <Icon name='menu'/>
+                <Button transparent onPress={() => this.props.navigation.navigate("Settings")}>
+                  <Icon name='settings'/>
                 </Button>
               </Left>
               <Body>

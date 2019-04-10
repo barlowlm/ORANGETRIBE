@@ -6,9 +6,11 @@ import {
     KeyboardAvoidingView
 } from 'react-native'
 
+//Michael
 export default class LoginScreen extends Component {
     render() {
         return (
+            //safe area view prevents screen coverage from notches
             <SafeAreaView style={styles.container}>
                 <StatusBar backgroundColor = 'lightgrey' />
                 <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset= {-300} style={styles.container} >
@@ -40,6 +42,7 @@ export default class LoginScreen extends Component {
                                 /> 
                                 <TouchableOpacity style={styles.buttonContainer}
                                         navigation = {this.props.navigation}
+                                        // "Home" called from rootstack in App.js
                                         onPress={() => this.props.navigation.navigate('Home')}>
                                     <Text style={styles.buttonText}>SIGN IN</Text>
                                 </TouchableOpacity>
@@ -51,6 +54,9 @@ export default class LoginScreen extends Component {
         )
     }
 }
+
+
+//positining and styling
 const styles = StyleSheet.create({
     container: {
         flex: 1,

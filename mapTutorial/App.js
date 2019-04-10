@@ -3,40 +3,18 @@ import MapScreen from './components/MapScreen';
 import LoginScreen from './components/screens/LoginScreen';
 import SplashScreen from './components/screens/SplashScreen';
 import QueryScreen from './components/screens/QueryScreen';
-import UserScreen from './components/screens/UserScreen';
 import SettingsScreen from './components/screens/SettingsScreen';
-import { createStackNavigator, createDrawerNavigator, 
-  createAppContainer , DrawerItems} from 'react-navigation';
-import {StyleSheet, Text, View, SafeAreaView, ScrollView, Dimensions, Image} from 'react-native';
+import { createStackNavigator, 
+  createAppContainer } from 'react-navigation';
 
-const CustomDrawerComponent = (props) => (
-  <SafeAreaView style={{flex: 1}}>
-    <View style={{height: 150, backgroundColor: 'white', 
-      alignItems: 'center', justifyContent: 'center'}}>
-      <Image source ={require('./components/images/logo.png')} 
-      style={{height: 120, width: 180, resizeMode: 'contain'}}/>
-    </View>
-    <ScrollView>
-      <DrawerItems {...props}/>
-    </ScrollView>
-  </SafeAreaView>
-)
-
-// Drawer Navigator
-const Drawer = createDrawerNavigator({
-  Map1 : MapScreen,
-  User1 : UserScreen,
-  Settings1 : SettingsScreen
-},{contentComponent: CustomDrawerComponent});
-
-
-// Main App Navigation
+// Main App Navigation - Michael
 const AppStack = createStackNavigator({
   Splash:  SplashScreen,
-  Login: LoginScreen,
-  Home: Drawer, 
+  Login: LoginScreen, 
   Query: QueryScreen,
   MapScreen: MapScreen,
+  Home: MapScreen,
+  Settings: SettingsScreen
 }, {headerMode : 'none'}
 );
 
