@@ -1,8 +1,8 @@
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Image, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
+import {Platform, StyleSheet, Image, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard, Button} from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
-import {Container, Header, Left, Body, Right, Button, Icon, Title, Content, Item, Input, Picker, Form} from 'native-base';
+import {Container, Header, Left, Body, Right, Icon, Title, Content, Item, Input, Picker, Form} from 'native-base';
 
 export default class SettingsScreen extends Component{
     constructor(props) {
@@ -11,60 +11,67 @@ export default class SettingsScreen extends Component{
           map1: "satellite"
         };
       }
-      static navigationOptions = {
-        //Setting the header of the screen
+      static navigationOptions = 
         title: 'SettingsScreen',
       };
-     onValueChange(value: string) {
+     mapChange = (value) => {
         this.setState({
-          selected: value
+          map1: value
         });
       }
       
     render (){
       const { navigate } = this.props.navigation;
-        return(
-            <Container>
-                <Header style ={{backgroundColor: '#cc6600'}} 
-                androidStatusBarColor = '#994d00'>
-                    <Left>
-                    <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-                        <Icon name='menu'/>
-                    </Button>
-                    </Left>
-                    <Body>
-                    <Title>GeoFind</Title>
-                    </Body>
-                    <Right/>
-                </Header>
-                <Content>
-                    <Text>Choose your map type</Text>
-                    <Form>
-            <Picker
-              note
-              mode="dropdown"
-              style={{ width: 120 }}
-              selectedValue={this.state.map}
-           onValueChange={this.onValueChange.bind(this)}
-          onValueChange={(itemValue, itemIndex) =>
-           this.setState({map1: itemValue})
-         }
-        onValueChange={() =>
-          navigate('MapScreen', {
-            userMap: Picker.itemValue
-          })
-        }
-            
+      return(
+           <Container navigation={this.props.navigation}>
+            <Header 
+              style ={{backgroundColor: '#cc6600'}} 
+              androidStatusBarColor = '#994d00'
             >
-              <Picker.Item label="Satellite" value="satellite" />
-              <Picker.Item label="Standard" value="standard" />
-              <Picker.Item label="Terrain" value="terrain" />
-              <Picker.Item label="Hyprid" value="hybrid" />
-            </Picker>
-          </Form>
-                </Content>
-        </Container>
-        )
-    }
+           <Left>
+            
+            </Left>
+            <Body>
+              <Title>GeoFind</Title>
+            </Body>
+            <Right/>
+          </Header>
+          <Content>
+           <Form> 
+            <Text>Choose your map type</Text>
+              <Picker
+                navigation={this.props.navigation}
+                note
+                mode="dropdown"
+                style={{ width: 300 }}
+                selectedValue={this.state.map1}
+               // onValueChange={this.mapChange}
+               // onValueChange={this.onValueChange.bind(this)}
+                onValueChange={() =>
+                  navigate('MapScreen', {
+                    userMap: Picker.itemValue,
+                  })
+                } 
+              >
+                <Picker.Item label="Satellite" value="satellite" />
+                <Picker.Item label="Standard" value="standard" />
+              </Picker>
+           </Form>
+          </Content>
+        </Container> 
+      
+    )
+  }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  mapStyle: {
+    flex: 1,
+  },
+});
         

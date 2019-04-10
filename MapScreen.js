@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Image, Text, View, TouchableWithoutFeedback, StatusBar, Keyboard} from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
 import {Container, Header, Left, Body, Right, Button, Icon, Title, Item, Input} from 'native-base';
+//import console = require('console');
 
 export default class MapScreen extends Component{
   state = {
     data: '',
-    map: "satellite"
+   map: "satellite"
   }
   static navigationOptions = {
     //Setting the header of the screen
@@ -25,7 +26,8 @@ export default class MapScreen extends Component{
   //   return arr;
   // }
 
-  // componentDidMount = () => {
+   componentDidMount = () => {
+     console.log(this.props.navigate);
   //   fetch('http://sloder.netsoc.ie/server.php',{
   //     method: 'POST'
   //   })
@@ -42,12 +44,12 @@ export default class MapScreen extends Component{
   //   .catch((error) => {
   //     console.error(error);
   //   });
-  // }
+   }
   
  
   render(){
     const { navigate } = this.props.navigation;
-    userMap = this.props.navigation.getParam('userMap', 'satellite');
+    userMap = this.props.navigation.getParam('userMap', this.state.map);
 
     // if (this.state.data=='') {
     //   return (
@@ -62,8 +64,8 @@ export default class MapScreen extends Component{
         <Header style ={{backgroundColor: '#cc6600'}} 
           androidStatusBarColor = '#994d00'>
             <Left>
-              <Button transparent onPress={() => this.props.navigation.openDrawer()}>
-                <Icon name='menu'/>
+              <Button transparent onPress={() => this.props.navigation.navigate('SettingsScreen')}>
+                <Icon name='settings'/>
               </Button>
             </Left>
             <Body>
@@ -79,7 +81,7 @@ export default class MapScreen extends Component{
         <MapView
         mapType = {userMap}
           style={styles.mapStyle}
-         //mapType = {userMap}
+
           // mapType = "terrain"
          // mapType = {this.state.map}
           //mapType = "hybrid"
