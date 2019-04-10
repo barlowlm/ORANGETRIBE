@@ -41,4 +41,24 @@ apply from: "../../node_modules/react-native-vector-icons/fonts.gradle", Details
 
 
 -- How to install --
+dependencies were installed from native code as directed at https://facebook.github.io/react-native/docs/getting-started.
+Refer to above link for spacifics of installation.
 
+WINDOWS INSTALLATION FOR ANDROID:
+
+dependencies used:
+
+-Chocolatey, a popular package manager for Windows, (includes Node and python).link: https://chocolatey.org/
+
+-Android Studio, necessary for running andoird emulator and can be used as prefered development enviroment. Custom set up needed.  https://developer.android.com/studio/index.html
+
+
+MAC INSTALLATION FOR ANDROID:
+
+dependencies used:
+
+-Homebrew, package manager which includes Node and recommended watchmen https://brew.sh/
+
+-Android studio, see above
+
+-(optional) Visual Studio code, prefered development enviroment found at https://code.visualstudio.com/download
